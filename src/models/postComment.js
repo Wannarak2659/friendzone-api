@@ -14,5 +14,16 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+
+  PostComment.associate = (db) => {
+    // ## PostComment belongsto Post
+    PostComment.belongsTo(db.Post, {
+      foreignKey: {
+        name: "postId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    }); //--
+  };
   return PostComment;
 };

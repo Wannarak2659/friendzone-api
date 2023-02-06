@@ -33,5 +33,37 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+
+  User.associate = (db) => {
+    // User:Post = 1:M
+
+    // ## User associate with post
+    User.hasMany(db.Post, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    }); //--
+
+    // ## User associate with GroupPage
+    User.hasMany(db.GroupPage, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    }); //--
+
+    // ## User associate with GroupMember
+    User.hasMany(db.GroupMember, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    }); //--
+  };
+
   return User;
 };

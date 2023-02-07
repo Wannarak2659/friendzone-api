@@ -43,6 +43,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: "RESTRICT",
     }); //--
+
+    // ## GroupPage is associate with Post
+    GroupPage.hasMany(db.Post, {
+      foreignKey: {
+        name: "groupId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
   };
 
   return GroupPage;

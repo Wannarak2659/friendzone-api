@@ -63,6 +63,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: "RESTRICT",
     }); //--
+
+    // ## User associate with PostComment
+    User.hasMany(db.PostComment, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
   };
 
   return User;

@@ -32,6 +32,15 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: "RESTRICT",
     });
+
+    // ## Post belongsto GroupPage
+    Post.belongsTo(db.GroupPage, {
+      foreignKey: {
+        name: "userId",
+        allowNull: false,
+      },
+      onDelete: "RESTRICT",
+    });
   };
   return Post;
 };

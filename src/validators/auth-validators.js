@@ -12,12 +12,12 @@ const registerSchema = Joi.object({
     "string.empty": "last name is required",
     "string.base": "last name must be a string",
   }),
-  email: Joi.string() // ??????????
-    .email({ tlds: false })
-    .messages({
-      "any.require": "Email address is required",
-    }),
-  // .strip(), // ## dont show on postman
+  email: Joi.string().email({ tlds: false }).messages({
+    "string.empty": "Email is required",
+    "string.email": "Please enter a valid email",
+    // .strip()
+    // strip = validate completed and make is invisible
+  }),
 
   password: Joi.string().alphanum().min(8).required().trim().messages({
     "string.empty": "password is required",
@@ -33,16 +33,16 @@ const registerSchema = Joi.object({
     .messages({
       "any.only": "password and confirm did not match",
       "string.empty": "confirm password is required",
-    })
-    .strip(),
+    }),
+  // .strip(),
 });
 
+// # import fnc from validate
 exports.validateRegister = validate(registerSchema);
-
-// ########### validate LOGIN
-// const loginSchema = Joi.object({
-//   email: Joi.string().required(),
-//   password: Joi.string().required(),
-// });
-
 // exports.validateLogin = validate(loginSchema);
+
+// // ########### validate LOGIN
+// // const loginSchema = Joi.object({
+// //   email: Joi.string().required(),
+// //   password: Joi.string().required(),
+// // });

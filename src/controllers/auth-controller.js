@@ -6,11 +6,12 @@ const createError = require("../utils/create-error");
 
 exports.register = async (req, res, next) => {
   try {
-    // ## query to db for validate exist account
+    s;
+    // # query to db for validate exist email account
     const value = validateRegister(req.body);
     const user = await User.findOne({
       where: {
-        [Op.or]: [{ email: value.email || "" }],
+        [Op.or]: { email: value.email || "" },
       },
     });
 
@@ -18,7 +19,8 @@ exports.register = async (req, res, next) => {
       createError("Email is already in use", 400);
     }
 
-    value.password = await bcrypt.hash(value.password, 12); // 12 = salt number
+    value.password = await bcrypt.hash(value.password, 10);
+    // # 10 = salt number
 
     await User.create(value);
 
@@ -28,9 +30,9 @@ exports.register = async (req, res, next) => {
   }
 };
 
-// exports.login = async (req, res, next) => {
-//   try {
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+exports.login = async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err);
+  }
+};

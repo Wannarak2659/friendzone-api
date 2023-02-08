@@ -6,7 +6,6 @@ const createError = require("../utils/create-error");
 
 exports.register = async (req, res, next) => {
   try {
-    s;
     // # query to db for validate exist email account
     const value = validateRegister(req.body);
     const user = await User.findOne({

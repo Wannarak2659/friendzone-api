@@ -62,3 +62,8 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getUser = (req, res, next) => {
+  res.status(200).json({ user: req.user });
+  // # req.user from authenticate
+};

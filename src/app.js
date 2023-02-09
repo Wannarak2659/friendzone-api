@@ -1,7 +1,10 @@
-// ## sync data with mysql
-
+// ## sync  all data with mysql
 // const { sequelize } = require("./models");
 // sequelize.sync({ force: true });
+
+// ## sync specific table with mysql
+// const { table_name } = require("./models/table_name");
+// table_name.sync({ force: true });
 
 // ----------------------------------
 

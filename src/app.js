@@ -6,6 +6,8 @@
 // const { table_name } = require("./models/table_name");
 // table_name.sync({ force: true });
 
+// const { groupPage } = require("./models/groupPage");
+// groupPage.sync({ force: true });
 // ----------------------------------
 
 require("dotenv").config();
@@ -19,6 +21,8 @@ const helmet = require("helmet");
 const { rateLimit } = require("express-rate-limit");
 
 const authRoute = require("./routes/auth-route");
+const userRoute = require("./routes/user-route");
+const authenticateMiddleware = require("./middlewares/authenticate");
 
 const notFoundMiddleware = require("./middlewares/not-found");
 const errorMiddleware = require("./middlewares/error");
@@ -39,10 +43,11 @@ app.use(
 app.use(cors()); // allow all origins
 app.use(express.json());
 
-app.use("/auth", authRoute);
 // # must be between app.use and notFoundmiddleware
-// app.use("/users", authenticateMiddleware, userRoute);
+app.use("/auth", authRoute);
+app.use("/users", authenticateMiddleware, userRoute);
 // app.use("/friends", authenticateMiddleware, friendRoute);
+// app.use("/create");
 // app.use("/posts", authenticateMiddleware, postRoute);
 
 app.use(notFoundMiddleware); // not path will sent to this middleware

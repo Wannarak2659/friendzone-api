@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
         exclude: ["password"],
       },
     });
-    console.log(user);
+    // console.log(user);
 
     if (!user) {
       createError("You are unauthorized", 401);

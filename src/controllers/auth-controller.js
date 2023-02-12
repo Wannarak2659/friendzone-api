@@ -40,7 +40,7 @@ exports.login = async (req, res, next) => {
     //# SELECT * FROM user where email = value.email OR pass
     const user = await User.findOne({
       where: {
-        [Op.or]: { email: value.email || "" },
+        [Op.or]: { email: value.email || "" }, //????
       },
     });
     if (!user) {
@@ -53,10 +53,23 @@ exports.login = async (req, res, next) => {
       createError("Plese enter a valid password ", 400);
     }
 
-    const accessToken = jwt.sign({ id: user.id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-      // # 3 params 1. gen user from method findOne 2.secretKey 3.option
-    });
+    const accessToken = jwt.sign(
+      {
+        // payload
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        profileImage: user.profileImage,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+        // # 3 params 1. gen user from method findOne 2.secretKey 3.option
+      }
+    );
     res.status(200).json({ accessToken });
   } catch (err) {
     next(err);

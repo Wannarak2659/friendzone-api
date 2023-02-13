@@ -25,18 +25,18 @@ module.exports = (sequelize, DataTypes) => {
     }); //--
 
     // ## Post is associate with PostComment
-    Post.hasMany(db.PostComment, {
-      foreignKey: {
-        name: "postId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-    });
+    // Post.hasMany(db.PostComment, {
+    //   foreignKey: {
+    //     name: "postId",
+    //     allowNull: false,
+    //   },
+    //   onDelete: "RESTRICT",
+    // });
 
     // ## Post belongsto GroupPage
     Post.belongsTo(db.GroupPage, {
       foreignKey: {
-        name: "userId",
+        name: "groupId",
         allowNull: false,
       },
       onDelete: "RESTRICT",

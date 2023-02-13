@@ -3,8 +3,8 @@
 // sequelize.sync({ force: true });
 
 // ## sync specific table with mysql
-// const { table_name } = require("./models/table_name");
-// table_name.sync({ force: true });
+// const { Post, PostComment } = require("./models");
+// Post.sync({ force: true });
 
 // const { groupPage } = require("./models/groupPage");
 // groupPage.sync({ force: true });
@@ -22,6 +22,8 @@ const { rateLimit } = require("express-rate-limit");
 
 const authRoute = require("./routes/auth-route");
 const userRoute = require("./routes/user-route");
+const groupRoute = require("./routes/group-route");
+const postRoute = require("./routes/post-route");
 const authenticateMiddleware = require("./middlewares/authenticate");
 
 const notFoundMiddleware = require("./middlewares/not-found");
@@ -46,9 +48,9 @@ app.use(express.json());
 // # must be between app.use and notFoundmiddleware
 app.use("/auth", authRoute);
 app.use("/users", authenticateMiddleware, userRoute);
+app.use("/groups", authenticateMiddleware, groupRoute);
+app.use("/posts", authenticateMiddleware, postRoute);
 // app.use("/friends", authenticateMiddleware, friendRoute);
-// app.use("/create");
-// app.use("/posts", authenticateMiddleware, postRoute);
 
 app.use(notFoundMiddleware); // not path will sent to this middleware
 app.use(errorMiddleware);

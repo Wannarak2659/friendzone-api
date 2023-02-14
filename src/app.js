@@ -6,8 +6,11 @@
 // const { Post, PostComment } = require("./models");
 // Post.sync({ force: true });
 
-// const { groupPage } = require("./models/groupPage");
-// groupPage.sync({ force: true });
+// const { Table_name } = require("./models");
+// Table_name.sync({ force: true });
+
+// const { GroupPage } = require("./models");
+// GroupPage.sync({ force: true });
 // ----------------------------------
 
 require("dotenv").config();

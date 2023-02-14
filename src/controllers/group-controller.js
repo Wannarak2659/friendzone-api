@@ -29,3 +29,13 @@ exports.createGroup = async (req, res, next) => {
     }
   }
 };
+
+exports.getAllGroup = async (req, res, next) => {
+  try {
+    const groups = await GroupPage.findAll();
+
+    res.status(200).json(groups);
+  } catch (err) {
+    next(err);
+  }
+};

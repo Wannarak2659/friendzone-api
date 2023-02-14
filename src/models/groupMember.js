@@ -18,13 +18,13 @@ module.exports = (sequelize, DataTypes) => {
     }); //--
 
     // ## GroupMember belongsto GroupPage
-    GroupMember.belongsTo(db.GroupPage, {
-      foreignKey: {
-        name: "groupId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-    }); //--
+    //   // GroupMember.belongsTo(db.GroupPage, {
+    //   //   foreignKey: {
+    //   //     name: "groupId",
+    //   //     allowNull: false,
+    //   //   },
+    //   //   onDelete: "RESTRICT",
+    //   // }); //--
   };
 
   return GroupMember;

@@ -43,13 +43,13 @@ module.exports = (sequelize, DataTypes) => {
     }); //--
 
     // ## GroupPage is associate with GroupMember
-    GroupPage.hasMany(db.GroupMember, {
-      foreignKey: {
-        name: "groupId",
-        allowNull: false,
-      },
-      onDelete: "RESTRICT",
-    }); //--
+    // GroupPage.hasMany(db.GroupMember, {
+    //   foreignKey: {
+    //     name: "groupId",
+    //     allowNull: false,
+    //   },
+    //   onDelete: "RESTRICT",
+    // }); //--
 
     // ## GroupPage is associate with Post
     GroupPage.hasMany(db.Post, {

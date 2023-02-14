@@ -9,9 +9,14 @@ router.patch(
   "/",
   upload.fields(
     // ([{ name: "profileImage" }]),
-    [{ name: "profileImage" }, { name: "CoverImage" }]
+    [
+      { name: "firstName" },
+      { name: "lastName" },
+      { name: "email" },
+      { name: "profileImage" },
+    ]
   ),
-  userController.updateProfileImage
+  userController.updateProfile
 );
 
 module.exports = router;

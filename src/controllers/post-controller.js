@@ -21,9 +21,31 @@ exports.createPost = async (req, res, next) => {
 
 exports.getAllPost = async (req, res, next) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      where: { groupId: req.params.groupId },
+    });
 
     res.status(200).json(posts);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deletePost = async (req, res, next) => {
+  const { postId } = req.params;
+
+  try {
+    // const post = await Post.findOne({
+    //   where: { groupId: postId },
+    // });
+    // if (!post) {
+    //   createError("this post was not found", 400);
+    // }
+    // if (post.userId !== req.user.id) {
+    //   createError("You are unauthorized", 403);
+    // }
+    await Post.destroy({ where: { id: postId } });
+    res.status(204).json();
   } catch (err) {
     next(err);
   }

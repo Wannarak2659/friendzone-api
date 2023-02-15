@@ -17,7 +17,7 @@ exports.createGroup = async (req, res, next) => {
 
     value.userId = req.user.id;
 
-    // insert data to dbbase
+    // #insert data to dbbase
     const group = await GroupPage.create(value);
     res.status(201).json({ value });
   } catch (err) {
@@ -35,6 +35,18 @@ exports.getAllGroup = async (req, res, next) => {
     const groups = await GroupPage.findAll();
 
     res.status(200).json(groups);
+  } catch (err) {
+    next(err);
+  }
+};
+exports.getGroupById = async (req, res, next) => {
+  const { groupId } = req.params;
+  try {
+    const group = await GroupPage.findOne({
+      where: { id: groupId },
+    });
+
+    res.status(200).json(group);
   } catch (err) {
     next(err);
   }

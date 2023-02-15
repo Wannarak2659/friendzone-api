@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.post("/", postController.createPost);
 
-router.get("/", postController.getAllPost);
+router.get("/:groupId", postController.getAllPost);
+
+router.delete("/:postId", postController.deletePost);
 
 module.exports = router;

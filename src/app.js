@@ -53,7 +53,6 @@ app.use("/auth", authRoute);
 app.use("/users", authenticateMiddleware, userRoute);
 app.use("/groups", authenticateMiddleware, groupRoute);
 app.use("/posts", authenticateMiddleware, postRoute);
-// app.use("/friends", authenticateMiddleware, friendRoute);
 
 app.use(notFoundMiddleware); // not path will sent to this middleware
 app.use(errorMiddleware);

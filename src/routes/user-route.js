@@ -7,15 +7,12 @@ const router = express.Router();
 
 router.patch(
   "/",
-  upload.fields(
-    // ([{ name: "profileImage" }]),
-    [
-      { name: "firstName" },
-      { name: "lastName" },
-      { name: "email" },
-      { name: "profileImage" },
-    ]
-  ),
+  upload.fields([
+    { name: "firstName" },
+    { name: "lastName" },
+    { name: "email" },
+    { name: "profileImage" },
+  ]),
   userController.updateProfile
 );
 

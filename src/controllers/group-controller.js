@@ -39,6 +39,31 @@ exports.getAllGroup = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.editGroup = async (req, res, next) => {
+  try {
+    let gImage;
+    if (req.file) {
+      // console.log("The image file is: ", req.file.originalname);
+      gImage = await cloudinary.upload(req.file.path);
+    }
+
+    const { groupId } = req.params;
+    const { name, detail, groupImage } = req.body;
+    const value = { name, detail, groupImage: gImage };
+
+    const updateGroup = await GroupPage.update(value, {
+      where: { id: +req.params.groupId },
+    });
+
+    res
+      .status(200)
+      .json({ message: "Successfully updated group", updateGroup });
+  } catch (err) {
+    next(err);
+  }
+};
+
 exports.getGroupById = async (req, res, next) => {
   const { groupId } = req.params;
   try {

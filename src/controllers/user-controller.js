@@ -8,7 +8,7 @@ exports.updateProfile = async (req, res, next) => {
     console.log(value);
 
     // console.log(req.files);
-    if (value.profileImage !== null) {
+    if (value.profileImage) {
       const profileImage = await cloudinary.upload(
         req.files.profileImage[0].path
       );

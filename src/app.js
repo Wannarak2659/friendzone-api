@@ -40,7 +40,7 @@ app.use(
   rateLimit({
     windowMs: 1000 * 60 * 30,
     // 15 minute per ip address prevent boots force
-    max: 100,
+    max: 500,
     message: { message: "Too many requests, please try again later" },
   })
 );

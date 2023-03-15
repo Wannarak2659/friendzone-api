@@ -14,7 +14,7 @@ exports.register = async (req, res, next) => {
     const value = validateRegister(req.body);
     const user = await User.findOne({
       where: {
-        [Op.or]: { email: value.email || "" }, // ?????
+        [Op.or]: { email: value.email || "" },
       },
     });
 

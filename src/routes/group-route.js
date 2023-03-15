@@ -11,4 +11,10 @@ router.get("/:groupId", groupController.getGroupById);
 
 router.get("/", groupController.getAllGroup);
 
+router.patch(
+  "/:groupId",
+  upload.single("groupImage"),
+  groupController.editGroup
+);
+
 module.exports = router;
